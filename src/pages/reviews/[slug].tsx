@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import {ParsedUrlQuery} from 'querystring'
 
 import {client} from '/src/services/contentful'
+import {ReviewEntry} from '/src/types/Entries'
 
 interface IParams extends ParsedUrlQuery {
   slug: string
@@ -16,7 +17,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
       content_type: 'review',
       'fields.slug[in]': slug,
     })
-  ).items
+  ).items[0]
 
   return {
     props: {
@@ -34,14 +35,14 @@ export async function getStaticPaths() {
 }
 
 interface IPage {
-  entries: any[]
+  entries?: ReviewEntry
 }
 
 const Page: NextPage<IPage> = (props) => {
   const router = useRouter()
   const {entries} = props
 
-  console.log(entries)
+  console.log(entries?.fields)
 
   if (router.isFallback) {
     return <p>Loading...</p>
