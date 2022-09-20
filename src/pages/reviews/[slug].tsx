@@ -12,7 +12,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({params}) => {
   const {slug} = params as IParams
 
-  const entries = (
+  const entry = (
     await client.getEntries({
       content_type: 'review',
       'fields.slug[in]': slug,
@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   return {
     props: {
-      entries,
+      entry,
     },
     revalidate: 60 * 60 * 12, // 12 horas
   }
@@ -35,20 +35,20 @@ export async function getStaticPaths() {
 }
 
 interface IPage {
-  entries?: ReviewEntry
+  entry?: ReviewEntry
 }
 
 const Page: NextPage<IPage> = (props) => {
   const router = useRouter()
-  const {entries} = props
+  const {entry} = props
 
-  console.log(entries?.fields)
+  console.log(entry?.fields)
 
   if (router.isFallback) {
     return <p>Loading...</p>
   }
 
-  return <p>Teste</p>
+  return <h1>{entry?.fields.title}</h1>
 }
 
 export default Page
