@@ -1,4 +1,5 @@
 import {GetStaticProps, NextPage} from 'next'
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {ParsedUrlQuery} from 'querystring'
 
@@ -18,6 +19,12 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
       'fields.slug[in]': slug,
     })
   ).items[0]
+
+  if (!entry) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
@@ -42,13 +49,26 @@ const Page: NextPage<IPage> = (props) => {
   const router = useRouter()
   const {entry} = props
 
-  console.log(entry?.fields)
-
   if (router.isFallback) {
     return <p>Loading...</p>
   }
 
-  return <h1>{entry?.fields.title}</h1>
+  if (!entry) {
+    return <p>Something is wrong</p>
+  }
+
+  return (
+    <>
+      <h1>{entry.fields.title}</h1>
+
+      <Image
+        src={'https:' + entry.fields.cover.fields.file.url}
+        alt={entry.fields.cover.fields.description}
+        height={entry.fields.cover.fields.file.details.image.height}
+        width={entry.fields.cover.fields.file.details.image.width}
+      />
+    </>
+  )
 }
 
 export default Page
