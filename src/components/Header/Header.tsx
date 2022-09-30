@@ -2,7 +2,7 @@ import HamburgerMenu from 'public/img/icons/hamburger-menu.svg'
 
 export const Header = () => {
   return (
-    <div className=" px-2 py-1 shadow-basic mb-2">
+    <div className="px-2 py-1 shadow-basic mb-2">
       <div className="container flex justify-between items-center mx-auto px-4">
         <div className="flex">
           <span className="mr-20">WhoGaming</span>

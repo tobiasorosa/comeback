@@ -1,8 +1,8 @@
 import {GetStaticProps, NextPage} from 'next'
-import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {ParsedUrlQuery} from 'querystring'
 
+import {Cover} from '/src/components/Reviews/Header/Cover'
 import {client} from '/src/services/contentful'
 import {ReviewEntry} from '/src/types/Entries'
 
@@ -58,16 +58,9 @@ const Page: NextPage<IPage> = (props) => {
   }
 
   return (
-    <>
-      <h1>{entry.fields.title}</h1>
-
-      <Image
-        src={'https:' + entry.fields.cover.fields.file.url}
-        alt={entry.fields.cover.fields.description}
-        height={entry.fields.cover.fields.file.details.image.height}
-        width={entry.fields.cover.fields.file.details.image.width}
-      />
-    </>
+    <div className="container px-4">
+      <Cover data={entry} />
+    </div>
   )
 }
 
