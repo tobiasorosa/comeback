@@ -1,8 +1,6 @@
 import NextDocument, {Head, Html, Main, NextScript} from 'next/document'
 import React from 'react'
 
-import {Header} from '../components/Header'
-
 export default class Document extends NextDocument {
   render() {
     return (
@@ -25,8 +23,6 @@ export default class Document extends NextDocument {
         </Head>
 
         <body>
-          <Header />
-
           <Main />
 
           <NextScript />

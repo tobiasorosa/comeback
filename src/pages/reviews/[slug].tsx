@@ -2,6 +2,8 @@ import {GetStaticProps, NextPage} from 'next'
 import {useRouter} from 'next/router'
 import {ParsedUrlQuery} from 'querystring'
 
+import {Footer} from '/src/components/Footer'
+import {Header} from '/src/components/Header'
 import {Cover} from '/src/components/Reviews/Header/Cover'
 import {client} from '/src/services/contentful'
 import {ReviewEntry} from '/src/types/Entries'
@@ -58,9 +60,15 @@ const Page: NextPage<IPage> = (props) => {
   }
 
   return (
-    <div className="container px-4">
-      <Cover data={entry} />
-    </div>
+    <>
+      <Header />
+
+      <div className="container px-4">
+        <Cover data={entry} />
+      </div>
+
+      <Footer />
+    </>
   )
 }
 
