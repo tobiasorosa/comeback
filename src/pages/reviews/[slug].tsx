@@ -67,6 +67,8 @@ const Page: NextPage<IPage> = (props) => {
         <Cover data={entry} />
       </div>
 
+      <div className="h-screen" />
+
       <Footer />
     </>
   )
