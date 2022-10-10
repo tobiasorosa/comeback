@@ -5,7 +5,9 @@ export const Header = () => {
     <div className="px-2 py-1 shadow-basic mb-2">
       <div className="container flex justify-between items-center mx-auto px-4">
         <div className="flex">
-          <span className="mr-20">WhoGaming</span>
+          <span className="mr-20">
+            <a href="https://www.whogaming.com">WhoGaming</a>
+          </span>
 
           <ul className="justify-between w-60 hidden md:flex">
             <li>News</li>

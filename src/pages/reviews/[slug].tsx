@@ -51,23 +51,21 @@ const Page: NextPage<IPage> = (props) => {
   const router = useRouter()
   const {entry} = props
 
-  if (router.isFallback) {
-    return <p>Loading...</p>
-  }
-
-  if (!entry) {
-    return <p>Something is wrong</p>
-  }
-
   return (
     <>
       <Header />
 
-      <div className="container px-4">
-        <Cover data={entry} />
-      </div>
+      {router.isFallback && <p>Loading...</p>}
 
-      <div className="h-screen" />
+      {!router.isFallback && (
+        <>
+          <div className="container px-4">
+            <Cover data={entry} />
+          </div>
+
+          <div className="h-screen" />
+        </>
+      )}
 
       <Footer />
     </>
